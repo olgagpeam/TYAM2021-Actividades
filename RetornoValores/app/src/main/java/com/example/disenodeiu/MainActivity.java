@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 public class MainActivity extends Activity{
     EditText nameE, lastnameE, ageE, addressE;
+    TextView result;
 /*
     public static String nameS = "";
     public static String lastnameS = "";
@@ -36,6 +37,8 @@ public class MainActivity extends Activity{
         lastnameE = findViewById (R.id.editlastname);
         ageE = findViewById (R.id.editage);
         addressE = findViewById (R.id.editaddress);
+
+        recibirDatos();
 
         Button buttonOpenActivity2 = findViewById(R.id.button_open_activity2);
         buttonOpenActivity2.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +75,18 @@ public class MainActivity extends Activity{
 
         String age = savedInstanceState.getString("editA");
         nameE.setText (age);
-        
+
         String address = savedInstanceState.getString("editAd");
         nameE.setText (address);
     }
 
+    private void recibirDatos(){
+        Bundle extras= getIntent().getExtras();
+        String n=extras.getString("name1");
+        String l=extras.getString("lastname1");
+        String nombrecompleto=n+l;
+        result = (TextView) findViewById(R.id.text_view_result);
+        result.setText(nombrecompleto);
+
+    }
 }
