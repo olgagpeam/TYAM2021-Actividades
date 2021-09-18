@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
-import android.widget.Toast;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
@@ -17,12 +16,7 @@ import androidx.annotation.Nullable;
 public class MainActivity extends Activity{
     EditText nameE, lastnameE, ageE, addressE;
     TextView result;
-/*
-    public static String nameS = "";
-    public static String lastnameS = "";
-    public static String ageS = "";
-    public static String addressS = "";
-*/
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +27,11 @@ public class MainActivity extends Activity{
         TextView lastname = findViewById (R.id.textViewlastname);
         TextView age = findViewById (R.id.textViewage);
         TextView address = findViewById (R.id.textViewaddress);
+        result = findViewById(R.id.text_view_result);
         nameE = findViewById (R.id.editname);
         lastnameE = findViewById (R.id.editlastname);
         ageE = findViewById (R.id.editage);
         addressE = findViewById (R.id.editaddress);
-
-        recibirDatos();
 
         Button buttonOpenActivity2 = findViewById(R.id.button_open_activity2);
         buttonOpenActivity2.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +73,20 @@ public class MainActivity extends Activity{
         nameE.setText (address);
     }
 
-    private void recibirDatos(){
-        Bundle extras= getIntent().getExtras();
-        String n=extras.getString("name1");
-        String l=extras.getString("lastname1");
-        String nombrecompleto=n+l;
-        result = (TextView) findViewById(R.id.text_view_result);
-        result.setText(nombrecompleto);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                String results = data.getStringExtra("result");
+                result.setText("" + results);
+            }
+            if (resultCode == RESULT_CANCELED) {
+                result.setText("Nothing selected");
+            }
+        }
     }
+
+
 }
