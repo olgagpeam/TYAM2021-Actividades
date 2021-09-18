@@ -1,0 +1,7 @@
+
+<resources>
+    <string name="app_name">BasicApp</string>
+    <string name="bienvenido_1">Bienvenido 1</string>
+    <string name="bienvenido_2">Bienvenido 2</string>
+    <string name="bienvenido_3">Bienvenido 3</string>
+</resources>
