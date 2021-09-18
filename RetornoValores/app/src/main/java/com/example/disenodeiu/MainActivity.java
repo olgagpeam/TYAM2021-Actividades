@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 
 public class MainActivity extends Activity{
     EditText nameE, lastnameE, ageE, addressE;
-    TextView result;
+    TextView result; 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
