@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 public class MainActivity extends Activity{
     EditText nameE, lastnameE, ageE, addressE;
     TextView result;
-    public static final int REQUEST_CODE_CALL_PHONE = 1001;
+    public static final int REQUEST_CODE_CAMERA = 1001;
     ImageView imageView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,26 +51,22 @@ public class MainActivity extends Activity{
             }
         });
         Button btnphoto = findViewById (R.id.button_photo);
-        imageView =(ImageView) findViewById(R.id.imageU);
-       /* btnphoto.setOnClickListener (view -> {
 
-            // validate if user has grant permission of call to the app
-            int permission = checkSelfPermission (Manifest.permission.CALL_PHONE);
-            if (permission != PackageManager.PERMISSION_GRANTED) { // if not, request it
-                requestPermissions (new String [] { Manifest.permission.CALL_PHONE },
-                        REQUEST_CODE_CALL_PHONE);
+        imageView =(ImageView) findViewById(R.id.imageU);;
 
-                return;
-            }
-
-            // only when the user has permmited phone calls the app is enable to do that
-            doPhoneCall ();
-        });*/
         btnphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // validate if user has grant permission of call to the app
+                int permission = checkSelfPermission (Manifest.permission.CAMERA);
+                if (permission != PackageManager.PERMISSION_GRANTED) { // if not, request it
+                    requestPermissions (new String [] { Manifest.permission.CAMERA },
+                            REQUEST_CODE_CAMERA);
+                    return;
+                }
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,0);
+
 
             }
         });
