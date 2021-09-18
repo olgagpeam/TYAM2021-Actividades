@@ -27,7 +27,7 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView (R.layout.activity_main);
 
-        
+
         TextView name = findViewById (R.id.textViewname);
         TextView lastname = findViewById (R.id.textViewlastname);
         TextView age = findViewById (R.id.textViewage);
@@ -77,7 +77,8 @@ public class MainActivity extends Activity{
 
     }
 
-    protected void docamera(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap=(Bitmap) data.getExtras().get("data");
         imageView.setImageBitmap(bitmap);
@@ -108,7 +109,7 @@ public class MainActivity extends Activity{
         nameE.setText (address);
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -121,7 +122,7 @@ public class MainActivity extends Activity{
                 result.setText("Nothing selected");
             }
         }
-    }
+    }*/
 
 
 
