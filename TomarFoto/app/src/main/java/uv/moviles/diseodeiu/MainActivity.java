@@ -43,7 +43,7 @@ public class MainActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name2", nameE.getText().toString());
+                intent.putExtra("name2", nameE.getText().toString());//pasa los datos a otra actividad
                 intent.putExtra("lastname2",lastnameE.getText().toString());
                 intent.putExtra("age2",ageE.getText().toString());
                 intent.putExtra("address2",addressE.getText().toString());
@@ -75,13 +75,13 @@ public class MainActivity extends Activity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);//validar requestcode para evitar errores
         Bitmap bitmap=(Bitmap) data.getExtras().get("data");
         imageView.setImageBitmap(bitmap);
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("editN", nameE.getText().toString());
         outState.putString("editL", lastnameE.getText().toString());
@@ -90,7 +90,7 @@ public class MainActivity extends Activity{
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         String name = savedInstanceState.getString("editN");
         nameE.setText (name);
